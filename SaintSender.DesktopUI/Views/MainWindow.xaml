@@ -11,9 +11,9 @@
         <ListView ItemsSource="{Binding EmailsToShow}" Height="300" Margin="0,110,-0.4,10">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Sender" DisplayMemberBinding="{Binding Path=Sender}" Width="120"/>
+                    <GridViewColumn Header="Sender" DisplayMemberBinding="{Binding Path=Sender}" Width="130"/>
                     <GridViewColumn Header="Subject" DisplayMemberBinding="{Binding Path=Subject}" Width="250"/>
-                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=Date}" Width="170"/>
+                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=Date}" Width="160"/>
                 </GridView>
             </ListView.View>
         </ListView>

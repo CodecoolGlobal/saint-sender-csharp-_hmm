@@ -6,8 +6,8 @@
         mc:Ignorable="d"
         Title="LoginWindow" Height="400" Width="400">
     <Grid>
-        <TextBox x:Name="emailInput" Width="300" HorizontalAlignment="Left" Margin="51,88,0,238.4"/>
-        <PasswordBox x:Name="passwordInput" Width="300" HorizontalAlignment="Left" Margin="51,181,0,161.4"/>
+        <TextBox x:Name="emailInput" Text="kisisit111@gmail.com" Width="300" HorizontalAlignment="Left" Margin="51,88,0,238.4"/>
+        <PasswordBox x:Name="passwordInput" Password="adammate/1" Width="300" HorizontalAlignment="Left" Margin="51,181,0,161.4"/>
         <Button Name="loginBtn" Content="Login" HorizontalAlignment="Right" VerticalAlignment="Top" Width="93" Margin="0,273,249.6,0" Height="37" Click="loginBtn_Click"/>
         <Button Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="93" Margin="258,273,0,0" Height="37" Click="CancelBtn_Click"/>
     </Grid>

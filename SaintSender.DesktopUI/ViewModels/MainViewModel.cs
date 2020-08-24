@@ -86,7 +86,7 @@ namespace SaintSender.DesktopUI.ViewModels
                     {
                         body = messagePart.GetBodyAsText();
                     }
-                    AddToEmailsToShowList(new Mail { Subject = email.Headers.Subject, Sender = email.Headers.From.ToString(), Date = email.Headers.DateSent, Body = body });
+                    AddToEmailsToShowList(new Mail { Subject = email.Headers.Subject, Sender = email.Headers.From.DisplayName, Date = email.Headers.DateSent, Body = body });
                     OnPropertyChanged("Email");
                 }
             }
