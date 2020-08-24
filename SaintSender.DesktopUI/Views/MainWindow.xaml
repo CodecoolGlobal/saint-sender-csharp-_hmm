@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaintSender.DesktopUI"
         mc:Ignorable="d"
-        Title="SainSender" Height="450" Width="800">
+        Title="SaintSender" Height="450" Width="800">
     <Grid>
-        <TextBox Name="NameTxt" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Button Name="GreetBtn" Content="Greet" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="140,13,0,0" Click="GreetBtn_Click"/>
-        <TextBlock Name="ResultTxt" HorizontalAlignment="Left" Margin="10,45,0,0" FontSize="28" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <Button Name="LoginBtn" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="709,10,0,0" Click="LoginBtn_Click"/>
+        <ListView ItemsSource="{Binding EmailsToShow}" Height="300" Margin="0,110,-0.4,10">
+            
+        </ListView>
     </Grid>
 </Window>
