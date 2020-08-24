@@ -27,7 +27,9 @@ namespace SaintSender.DesktopUI
         public MainWindow()
         {
             InitializeComponent();
-            _vm = new MainViewModel();
+            _vm = MainViewModel.GetInstance();
+            this.DataContext = _vm;
+            
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)

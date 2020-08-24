@@ -9,7 +9,13 @@
     <Grid>
         <Button Name="LoginBtn" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="709,10,0,0" Click="LoginBtn_Click"/>
         <ListView ItemsSource="{Binding EmailsToShow}" Height="300" Margin="0,110,-0.4,10">
-            
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Sender" DisplayMemberBinding="{Binding Path=Sender}" Width="120"/>
+                    <GridViewColumn Header="Subject" DisplayMemberBinding="{Binding Path=Subject}" Width="250"/>
+                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding Path=Date}" Width="170"/>
+                </GridView>
+            </ListView.View>
         </ListView>
     </Grid>
 </Window>
