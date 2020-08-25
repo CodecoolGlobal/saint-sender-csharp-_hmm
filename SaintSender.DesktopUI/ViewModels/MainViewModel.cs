@@ -7,6 +7,7 @@ using OpenPop.Mime;
 using SaintSender.Core.Entities;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using System.Net.Mail;
 
 namespace SaintSender.DesktopUI.ViewModels
 {
@@ -90,6 +91,20 @@ namespace SaintSender.DesktopUI.ViewModels
                     OnPropertyChanged("Email");
                 }
             }
+        }
+
+        internal void SendEmail(string emailTo, string mailSubject, string mailBody)
+        {
+            MailMessage mail = new MailMessage(loggedInUser.UserName, emailTo);
+            mail.Subject = mailSubject;
+            mail.Body = mailBody;
+
+            SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
+            smtpServer.Port = 587;
+            smtpServer.Credentials = new System.Net.NetworkCredential(loggedInUser.UserName, loggedInUser.Password);
+            smtpServer.EnableSsl = true;
+
+            smtpServer.Send(mail);
         }
 
         internal void AddToEmailsToShowList(Mail oneMail)
