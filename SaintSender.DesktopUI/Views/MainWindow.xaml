@@ -9,6 +9,12 @@
     <Grid>
         <Button Name="LoginBtn" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="709,10,0,0" Click="LoginBtn_Click"/>
         <ListView ItemsSource="{Binding EmailsToShow}" Height="300" Margin="0,110,-0.4,10">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick" />
+                    <Setter Property="Tag" Value="{Binding Path=ID}"/>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Sender" DisplayMemberBinding="{Binding Path=Sender}" Width="130"/>
