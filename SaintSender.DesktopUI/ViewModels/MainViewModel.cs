@@ -5,6 +5,7 @@ using System.Linq;
 using System.ComponentModel;
 using OpenPop.Mime;
 using SaintSender.Core.Entities;
+using System.Collections.ObjectModel;
 
 namespace SaintSender.DesktopUI.ViewModels
 {
@@ -12,13 +13,13 @@ namespace SaintSender.DesktopUI.ViewModels
     {
         private static MainViewModel _instance;
         private List<Message> _emailsInMessage;
-        private List<Mail> _emailsToShow;
+        private ObservableCollection<Mail> _emailsToShow;
 
         
         private MainViewModel()
         {
             _emailsInMessage = new List<Message>();
-            _emailsToShow = new List<Mail>();
+            _emailsToShow = new ObservableCollection<Mail> ();
         }
 
         public List<Message> EmailsInMessage
@@ -27,7 +28,7 @@ namespace SaintSender.DesktopUI.ViewModels
             set { _emailsInMessage = value; }
         }
 
-        public List<Mail> EmailsToShow
+        public ObservableCollection<Mail> EmailsToShow
         {
             get { return _emailsToShow; }
             set { _emailsToShow = value; }
