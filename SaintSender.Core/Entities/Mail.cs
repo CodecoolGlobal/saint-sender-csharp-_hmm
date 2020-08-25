@@ -8,6 +8,11 @@ namespace SaintSender.Core.Entities
 {
     public class Mail
     {
+        public int ID
+        {
+            get;set;
+        }
+
         public string Subject
         {
             get;set;

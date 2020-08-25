@@ -15,7 +15,7 @@ namespace SaintSender.DesktopUI.ViewModels
         private static MainViewModel _instance;
         private List<Message> _emailsInMessage;
         private ObservableCollection<Mail> _emailsToShow;
-  
+        private Mail selectedEmail;
         
         private MainViewModel()
         {
@@ -33,6 +33,11 @@ namespace SaintSender.DesktopUI.ViewModels
         {
             get { return _emailsToShow; }
             set { _emailsToShow = value; }
+        }
+
+        public Mail SelectedMail
+        {
+            get { return selectedEmail; }
         }
 
         public string UserEmail
@@ -74,6 +79,7 @@ namespace SaintSender.DesktopUI.ViewModels
 
         public void BuildUpEmailsToShow()
         {
+            int idCounter = _emailsInMessage.Count();
             foreach (Message email in EmailsInMessage)
             {
                 if(email != null) 
@@ -88,7 +94,8 @@ namespace SaintSender.DesktopUI.ViewModels
                     {
                         body = messagePart.GetBodyAsText();
                     }
-                    AddToEmailsToShowList(new Mail { Subject = email.Headers.Subject, Sender = email.Headers.From.DisplayName, Date = email.Headers.DateSent, Body = body });
+                    AddToEmailsToShowList(new Mail { ID = idCounter, Subject = email.Headers.Subject, Sender = email.Headers.From.DisplayName, Date = email.Headers.DateSent, Body = body });
+                    idCounter--;
                     OnPropertyChanged("Email");
                 }
             }
@@ -97,6 +104,17 @@ namespace SaintSender.DesktopUI.ViewModels
         internal void AddToEmailsToShowList(Mail oneMail)
         {
             _emailsToShow.Add(oneMail);
+        }
+
+        internal void PutEmailIntoSelectedField(int id)
+        {
+            foreach (Mail mail in _emailsToShow)
+            {
+                if (mail.ID == id)
+                {
+                    selectedEmail = mail;
+                }
+            }
         }
 
         internal void handleLogIn(string text, string password)
