@@ -29,6 +29,7 @@ namespace SaintSender.DesktopUI.Views
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
+            
             _vm.handleLogIn(emailInput.Text, passwordInput.Password);
             this.Close();
         }

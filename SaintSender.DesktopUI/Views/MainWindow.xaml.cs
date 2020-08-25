@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using OpenPop.Mime;
+using SaintSender.Core.Entities;
 using SaintSender.Core.Services;
 using SaintSender.DesktopUI.ViewModels;
 using SaintSender.DesktopUI.Views;
@@ -29,15 +30,25 @@ namespace SaintSender.DesktopUI
             InitializeComponent();
             _vm = MainViewModel.GetInstance();
             this.DataContext = _vm;
-            
+            User user = new User();
+            if (user.HaveAlreadyLoggedInUser())
+            {
+                String emailInput = user.GetSavedUsername();
+                String passwordInput = user.GetSavedpassword();
+                _vm.handleLogIn(emailInput, passwordInput);
+                //LoginBtn.Content = "Logout";
+            }
+       
+
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.Show();
+           
         }
-
+        
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ListViewItem clicked = sender as ListViewItem;

@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Entities\Mail.cs" />
     <Compile Include="Entities\PropertyNotifier.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Services\GreetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\IGreetService.cs" />
