@@ -6,6 +6,7 @@ using System.ComponentModel;
 using OpenPop.Mime;
 using SaintSender.Core.Entities;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace SaintSender.DesktopUI.ViewModels
 {
@@ -14,7 +15,7 @@ namespace SaintSender.DesktopUI.ViewModels
         private static MainViewModel _instance;
         private List<Message> _emailsInMessage;
         private ObservableCollection<Mail> _emailsToShow;
-
+  
         
         private MainViewModel()
         {
@@ -100,6 +101,10 @@ namespace SaintSender.DesktopUI.ViewModels
 
         internal void handleLogIn(string text, string password)
         {
+            User user = new User();
+            user.UserName = text;
+            user.Password = password;
+            user.SaveUser();
             UserEmail = text;
             Password = password;
             _emailsInMessage = GetEmails();
@@ -115,5 +120,7 @@ namespace SaintSender.DesktopUI.ViewModels
 
             return _instance;
         }
+
+       
     }
 }
