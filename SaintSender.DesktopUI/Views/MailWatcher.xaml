@@ -19,11 +19,12 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
+            
             <Label Content="Sender:" FontSize="18" Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <Label Content="Subject:" FontSize="18" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <Label Content="Date:" FontSize="18" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             <Label Content="Message:" FontSize="18" Grid.Column="0" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-
+            
             <TextBlock Text="{Binding SelectedMail.Sender}" FontSize="20" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <TextBlock Text="{Binding SelectedMail.Subject}" FontSize="20" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
             <TextBlock Text="{Binding SelectedMail.Date}" FontSize="20" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" />

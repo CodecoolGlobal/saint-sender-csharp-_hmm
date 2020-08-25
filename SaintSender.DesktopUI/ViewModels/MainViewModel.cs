@@ -13,9 +13,11 @@ namespace SaintSender.DesktopUI.ViewModels
     class MainViewModel : PropertyNotifier
     {
         private static MainViewModel _instance;
+
         private List<Message> _emailsInMessage;
         private ObservableCollection<Mail> _emailsToShow;
         private Mail selectedEmail;
+        private User loggedInUser;
         
         private MainViewModel()
         {
@@ -40,17 +42,6 @@ namespace SaintSender.DesktopUI.ViewModels
             get { return selectedEmail; }
         }
 
-        public string UserEmail
-        {
-            get;set;
-        }
-
-        public string Password
-        {
-            get;set;
-        }
-
-
         internal List<Message> GetEmails()
         {
             List<Message> resultList = new List<Message>();
@@ -58,7 +49,7 @@ namespace SaintSender.DesktopUI.ViewModels
             {
                 Pop3Client client = new Pop3Client();
                 client.Connect("pop.gmail.com", 995, true);
-                client.Authenticate(UserEmail, Password, AuthenticationMethod.UsernameAndPassword);
+                client.Authenticate(loggedInUser.UserName, loggedInUser.Password, AuthenticationMethod.UsernameAndPassword);
                 int messageCount = client.GetMessageCount();
                 List<Message> allEmails = new List<Message>();
 
@@ -123,8 +114,9 @@ namespace SaintSender.DesktopUI.ViewModels
             user.UserName = text;
             user.Password = password;
             user.SaveUser();
-            UserEmail = text;
-            Password = password;
+
+            loggedInUser = user;
+
             _emailsInMessage = GetEmails();
             BuildUpEmailsToShow();
         }

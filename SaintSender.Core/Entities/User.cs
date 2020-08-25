@@ -10,6 +10,8 @@ namespace SaintSender.Core.Entities
 {
     public class User
     {
+        private const string path = @"E:\TestForSearching\MailAndPassword.txt";
+
         public string UserName
         {
             get; set;
@@ -32,7 +34,6 @@ namespace SaintSender.Core.Entities
 
         public void SaveUser()
         {
-            String path = @"C:\Users\Máté\Desktop\Advance\3_TW\dat.txt";
             String text = UserName + " " + Password; 
             if (File.Exists(path))
             {
@@ -43,7 +44,6 @@ namespace SaintSender.Core.Entities
         
         public bool HaveAlreadyLoggedInUser()
         {
-            String path = @"C:\Users\Máté\Desktop\Advance\3_TW\dat.txt";
             String dat = File.ReadAllText(path);
             if (dat == "") return false;
             return true;
@@ -51,14 +51,12 @@ namespace SaintSender.Core.Entities
 
         public String  GetSavedUsername()
         {
-            String path = @"C:\Users\Máté\Desktop\Advance\3_TW\dat.txt";
             String dat = File.ReadAllText(path);
             String[] strlist = dat.Split(' ');
             return strlist[0];
         } 
         public String  GetSavedpassword()
         {
-            String path = @"C:\Users\Máté\Desktop\Advance\3_TW\dat.txt";
             String dat = File.ReadAllText(path);
             String[] strlist = dat.Split(' ');
             return strlist[1];
