@@ -37,5 +37,14 @@ namespace SaintSender.DesktopUI
             LoginWindow loginWindow = new LoginWindow();
             loginWindow.Show();
         }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ListViewItem clicked = sender as ListViewItem;
+            _vm.PutEmailIntoSelectedField(int.Parse(clicked.Tag.ToString()));
+
+            MailWatcher mailWatcher = new MailWatcher();
+            mailWatcher.Show();
+        }
     }
 }
