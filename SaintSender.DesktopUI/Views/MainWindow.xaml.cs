@@ -66,5 +66,11 @@ namespace SaintSender.DesktopUI
             MailWatcher mailWatcher = new MailWatcher();
             mailWatcher.Show();
         }
+
+        private void Compose_Click(object sender, RoutedEventArgs e)
+        {
+            MailSenderWindow senderWindow = new MailSenderWindow();
+            senderWindow.Show();
+        }
     }
 }
