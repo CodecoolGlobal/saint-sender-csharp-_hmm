@@ -18,6 +18,7 @@ namespace SaintSender.DesktopUI.ViewModels
         private ObservableCollection<Mail> _emailsToShow;
         private Mail selectedEmail;
         private User loggedInUser;
+        private string loginButtonContent;
         
         private MainViewModel()
         {
@@ -34,12 +35,18 @@ namespace SaintSender.DesktopUI.ViewModels
         public ObservableCollection<Mail> EmailsToShow
         {
             get { return _emailsToShow; }
-            set { _emailsToShow = value; }
+            set { _emailsToShow = value; OnPropertyChanged("EmailsToShow"); }
         }
 
         public Mail SelectedMail
         {
             get { return selectedEmail; }
+        }
+
+        public string LoginButtonContent
+        {
+            set { loginButtonContent = value; OnPropertyChanged("LoginButtonContent"); }
+            get { return loginButtonContent; }
         }
 
         internal List<Message> GetEmails()
@@ -87,7 +94,7 @@ namespace SaintSender.DesktopUI.ViewModels
                     }
                     AddToEmailsToShowList(new Mail { ID = idCounter, Subject = email.Headers.Subject, Sender = email.Headers.From.DisplayName, Date = email.Headers.DateSent, Body = body });
                     idCounter--;
-                    OnPropertyChanged("Email");
+                    OnPropertyChanged("EmailsToShow");
                 }
             }
         }
@@ -116,9 +123,22 @@ namespace SaintSender.DesktopUI.ViewModels
             user.SaveUser();
 
             loggedInUser = user;
+            LoginButtonContent = "Logout";
+
+            _emailsInMessage = new List<Message>();
+            _emailsToShow = new ObservableCollection<Mail>();
+            
 
             _emailsInMessage = GetEmails();
             BuildUpEmailsToShow();
+        }
+
+        internal void handleLogout()
+        {
+            loggedInUser = null;
+            LoginButtonContent = "Login";
+            EmailsInMessage = null;
+            EmailsToShow = null;
         }
 
         public static MainViewModel GetInstance()

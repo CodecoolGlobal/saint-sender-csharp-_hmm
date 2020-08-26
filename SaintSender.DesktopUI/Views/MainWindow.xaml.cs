@@ -33,19 +33,28 @@ namespace SaintSender.DesktopUI
             User user = new User();
             if (user.HaveAlreadyLoggedInUser())
             {
-                String emailInput = user.GetSavedUsername();
-                String passwordInput = user.GetSavedpassword();
+                string emailInput = user.GetSavedUsername();
+                string passwordInput = user.GetSavedpassword();
+                _vm.LoginButtonContent = "Logout";
                 _vm.handleLogIn(emailInput, passwordInput);
-                //LoginBtn.Content = "Logout";
             }
-       
-
+            else
+            {
+                _vm.LoginButtonContent = "Login";
+            }
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.Show();
+            if (_vm.LoginButtonContent.Equals("Login"))
+            {
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.Show();
+            }
+            else
+            {
+                _vm.handleLogout();
+            }
            
         }
         
