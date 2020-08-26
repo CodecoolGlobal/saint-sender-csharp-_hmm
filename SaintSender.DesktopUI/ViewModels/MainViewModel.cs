@@ -156,6 +156,18 @@ namespace SaintSender.DesktopUI.ViewModels
             EmailsToShow = null;
         }
 
+        internal bool isSomeoneLoggedIn()
+        {
+            if (loggedInUser != null)
+            {
+                return true;
+            } 
+            else
+            {
+                return false;
+            }
+        }
+
         public static MainViewModel GetInstance()
         {
             if (_instance == null)

@@ -69,8 +69,15 @@ namespace SaintSender.DesktopUI
 
         private void Compose_Click(object sender, RoutedEventArgs e)
         {
-            MailSenderWindow senderWindow = new MailSenderWindow();
-            senderWindow.Show();
+            if (_vm.isSomeoneLoggedIn())
+            {
+                MailSenderWindow senderWindow = new MailSenderWindow();
+                senderWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("You must be logged in to send emails!");
+            }
         }
     }
 }
