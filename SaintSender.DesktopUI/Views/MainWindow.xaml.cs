@@ -40,7 +40,6 @@ namespace SaintSender.DesktopUI
                 _vm.LoginButtonContent = "Logout";
                 _vm.handleLogIn(emailInput, passwordInput);
                 _vm.SaveMails();
-                //LoginBtn.Content = "Logout";
 
             }
             else

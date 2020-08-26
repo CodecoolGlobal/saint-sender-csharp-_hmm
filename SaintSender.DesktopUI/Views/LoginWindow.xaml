@@ -4,11 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="400" Width="400">
+        Title="Login" Height="400" Width="400">
     <Grid>
-        <TextBox x:Name="emailInput" Text="kisisit111@gmail.com" Width="300" HorizontalAlignment="Left" Margin="51,88,0,238.4"/>
-        <PasswordBox x:Name="passwordInput" Password="adammate/1" Width="300" HorizontalAlignment="Left" Margin="51,181,0,161.4"/>
-        <Button Name="loginBtn" Content="Login" HorizontalAlignment="Right" VerticalAlignment="Top" Width="93" Margin="0,273,249.6,0" Height="37" Click="loginBtn_Click"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Top" Width="93" Margin="258,273,0,0" Height="37" Click="CancelBtn_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="Email Address" FontWeight="Bold" Width="170" Height="40" FontSize="24" Grid.Row="0" Margin="50,0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Label Content="Password" FontWeight="Bold" Width="120" Height="40" FontSize="24" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox x:Name="emailInput" Text="kisisit111@gmail.com" FontSize="24" Width="276" Height="35" HorizontalAlignment="Left" Grid.Row="1" Margin="65,0,0,0"/>
+        <PasswordBox x:Name="passwordInput" Password="adammate/1" Width="276" FontSize="24" Height="35" HorizontalAlignment="Left" Grid.Row="3" Margin="65,0,0,0"/>
+        <Button Name="loginBtn" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Center" Width="93" Grid.Row="4" Height="37" Click="loginBtn_Click" Margin="70,0"/>
+        <Button Content="Cancel" HorizontalAlignment="Right" VerticalAlignment="Center" Width="93" Grid.Row="4" Height="37" Click="CancelBtn_Click" Margin="0,0,70,0"/>
     </Grid>
 </Window>
