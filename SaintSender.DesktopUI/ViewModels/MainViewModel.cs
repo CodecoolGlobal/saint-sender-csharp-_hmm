@@ -133,10 +133,24 @@ namespace SaintSender.DesktopUI.ViewModels
             loggedInUser = user;
 
             _emailsInMessage = GetEmails();
-            BuildUpEmailsToShow();
+            //BuildUpEmailsToShow();
+            ReadMails();
         }
 
-        public static MainViewModel GetInstance()
+        public void SaveMails()
+        {
+            foreach (Mail mail in _emailsToShow)
+            {
+                mail.Serialize("");
+            }
+        }
+
+        public void ReadMails()
+        {
+            Mail.Deserialize();
+        }
+
+            public static MainViewModel GetInstance()
         {
             if (_instance == null)
             {

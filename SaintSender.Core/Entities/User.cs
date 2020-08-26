@@ -10,7 +10,7 @@ namespace SaintSender.Core.Entities
 {
     public class User
     {
-        private const string path = @"E:\TestForSearching\MailAndPassword.txt";
+        private const string path = @"C:\Users\Máté\Desktop\Advance\3_TW\dat.txt";
 
         public string UserName
         {

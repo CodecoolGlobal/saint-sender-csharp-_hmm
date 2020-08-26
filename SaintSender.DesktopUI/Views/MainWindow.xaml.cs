@@ -36,6 +36,7 @@ namespace SaintSender.DesktopUI
                 String emailInput = user.GetSavedUsername();
                 String passwordInput = user.GetSavedpassword();
                 _vm.handleLogIn(emailInput, passwordInput);
+                _vm.SaveMails();
                 //LoginBtn.Content = "Logout";
             }
        
