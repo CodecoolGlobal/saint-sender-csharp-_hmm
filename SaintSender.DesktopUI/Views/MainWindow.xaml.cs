@@ -76,7 +76,7 @@ namespace SaintSender.DesktopUI
             }
             else
             {
-                MessageBox.Show("You must be logged in to send emails!");
+                MessageBox.Show("You must be logged in to send emails!", "Please Log in");
             }
         }
     }
