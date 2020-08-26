@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -63,33 +64,51 @@ namespace SaintSender.Core.Entities
             info.AddValue("body", this.Body);
         }
 
-        public void Serialize(string output)
+        public static void Serialize(string output, ObservableCollection<Mail> mails )
         {
 
             IFormatter formatter = new BinaryFormatter();
             if (!File.Exists(path))
             {
                 Stream stream = new FileStream(path, FileMode.Create, FileAccess.Write);
-                formatter.Serialize(stream, this);
+                formatter.Serialize(stream, mails);
                 stream.Close();
             }
             else
             {
                 File.Delete(path);
                 Stream stream = new FileStream(path, FileMode.Create, FileAccess.Write);
-                formatter.Serialize(stream, this);
+                formatter.Serialize(stream, mails);
                 stream.Close();
             }
         }
 
-        public static Mail Deserialize()
+        public static ObservableCollection<Mail> Deserialize()
         {
-            Mail mail = new Mail();
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read);
-            mail = (Mail)formatter.Deserialize(stream);
-            stream.Close();
-            return mail;
+            ObservableCollection<Mail> _emailsToShow = null;
+
+            // Open the file containing the data that you want to deserialize.
+            FileStream fs = new FileStream(path, FileMode.Open);
+            try
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                // Deserialize the hashtable from the file and
+                // assign the reference to the local variable.
+                _emailsToShow = (ObservableCollection<Mail>)formatter.Deserialize(fs);
+            }
+            catch (SerializationException e)
+            {
+                Console.WriteLine("Failed to deserialize. Reason: " + e.Message);
+                throw;
+            }
+            finally
+            {
+                fs.Close();
+            }
+            return _emailsToShow;
+            
+           
         }
 
         void IDeserializationCallback.OnDeserialization(Object sender)
