@@ -25,7 +25,7 @@
         <TextBox x:Name="Subject" Grid.Column="1" FontSize="20" Height="40" Width="400" Grid.Row="1" HorizontalAlignment="Center" />
         <TextBox x:Name="Message" Grid.Column="1" FontSize="20" Width="400" Height="220" Grid.Row="2" HorizontalAlignment="Center" />
 
-        <Button Name="Send" Content="Send" Height="25" Width="75" Grid.Column="1" Grid.Row="3" Click="Send_Click" Margin="113.2,0.4,294.2,-0.6" />
-        <Button Name="Cancel" Content="Cancel" Height="25" Width="75" Grid.Column="1" Grid.Row="2" Click="Cancel_Click" Margin="326.2,266.6,81.2,0.4" Grid.RowSpan="2"/>
+        <Button Name="Send" Content="Send" Width="75" Grid.Column="1" Grid.Row="3" Click="Send_Click" Height="25" Margin="0,0,150,0" />
+        <Button Name="Cancel" Content="Cancel" Height="25" Width="75" Grid.Column="1" Grid.Row="3" Click="Cancel_Click" Margin="250,0,0,0"/>
     </Grid>
 </Window>

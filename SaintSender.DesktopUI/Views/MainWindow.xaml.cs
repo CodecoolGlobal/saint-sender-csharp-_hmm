@@ -33,20 +33,31 @@ namespace SaintSender.DesktopUI
             User user = new User();
             if (user.HaveAlreadyLoggedInUser())
             {
-                String emailInput = user.GetSavedUsername();
-                String passwordInput = user.GetSavedpassword();
+                string emailInput = user.GetSavedUsername();
+                string passwordInput = user.GetSavedpassword();
+                _vm.LoginButtonContent = "Logout";
                 _vm.handleLogIn(emailInput, passwordInput);
                 _vm.SaveMails();
                 //LoginBtn.Content = "Logout";
-            }
-       
 
+            }
+            else
+            {
+                _vm.LoginButtonContent = "Login";
+            }
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.Show();
+            if (_vm.LoginButtonContent.Equals("Login"))
+            {
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.Show();
+            }
+            else
+            {
+                _vm.handleLogout();
+            }
            
         }
         
@@ -61,8 +72,15 @@ namespace SaintSender.DesktopUI
 
         private void Compose_Click(object sender, RoutedEventArgs e)
         {
-            MailSenderWindow senderWindow = new MailSenderWindow();
-            senderWindow.Show();
+            if (_vm.isSomeoneLoggedIn())
+            {
+                MailSenderWindow senderWindow = new MailSenderWindow();
+                senderWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("You must be logged in to send emails!", "Please Log in");
+            }
         }
     }
 }

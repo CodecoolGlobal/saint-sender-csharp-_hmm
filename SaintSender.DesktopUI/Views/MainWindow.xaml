@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         Title="SaintSender" Height="450" Width="800">
     <Grid>
-        <Button Name="LoginBtn" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="700,11,0,0" Click="LoginBtn_Click" Height="25"/>
+        <Button Name="LoginBtn" Content="{Binding LoginButtonContent}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="709,10,0,0" Click="LoginBtn_Click"/>
         <Button Name="Compose" Content="Compose" Width="75" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top"  Click="Compose_Click" Margin="10,11,0,0"/>
+        
         <ListView ItemsSource="{Binding EmailsToShow}" Height="300" Margin="0,110,-0.4,10">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
