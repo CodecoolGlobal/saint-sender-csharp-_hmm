@@ -151,15 +151,12 @@ namespace SaintSender.DesktopUI.ViewModels
 
         public void SaveMails()
         {
-            foreach (Mail mail in _emailsToShow)
-            {
-                mail.Serialize("");
-            }
+            Mail.Serialize("", _emailsToShow); 
         }
 
         public void ReadMails()
         {
-            Mail.Deserialize();
+            _emailsToShow =  Mail.Deserialize();
         }
 
         internal void handleLogout()
