@@ -27,21 +27,16 @@ namespace SaintSender.DesktopUI
     {
         MainViewModel _vm;
         private DispatcherTimer dispatcher = new DispatcherTimer();
+
         public MainWindow()
         {
             InitializeComponent();
             _vm = MainViewModel.GetInstance();
             this.DataContext = _vm;
-            User user = new User();
-            if (user.HaveAlreadyLoggedInUser())
+            if (User.HaveAlreadyLoggedInUser())
             {
-                string emailInput = user.GetSavedUsername();
-                string passwordInput = user.GetSavedpassword();
                 _vm.LoginButtonContent = "Logout";
-                _vm.handleLogIn(emailInput, passwordInput);
-                _vm.SaveMails();
-                //LoginBtn.Content = "Logout";
-
+                _vm.handleLogIn(User.GetSavedUsername(), User.GetSavedpassword());
             }
             else
             {

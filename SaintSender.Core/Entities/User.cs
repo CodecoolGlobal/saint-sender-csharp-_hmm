@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SaintSender.Core.Entities
 {
     public class User
     {
-        private const string path = @"C:\Users\Máté\Desktop\Advance\3_TW\dat.txt";
+        private static string path = "./data/user.txt";
 
         public string UserName
         {
@@ -26,11 +21,7 @@ namespace SaintSender.Core.Entities
         {
             get; set;
         }
-        public string OriginPassword
-        {
-            get; set;
-        }
-
+       
 
         public void SaveUser()
         {
@@ -42,24 +33,20 @@ namespace SaintSender.Core.Entities
             File.WriteAllText(path, text);
         }
         
-        public bool HaveAlreadyLoggedInUser()
+        public static bool HaveAlreadyLoggedInUser()
         {
-            String dat = File.ReadAllText(path);
-            if (dat == "") return false;
+            if (String.IsNullOrEmpty(File.ReadAllText(path))) return false;
             return true;
         }
 
-        public String  GetSavedUsername()
+        public static String  GetSavedUsername()
         {
-            String dat = File.ReadAllText(path);
-            String[] strlist = dat.Split(' ');
-            return strlist[0];
+            return File.ReadAllText(path).Split(' ')[0];
         } 
-        public String  GetSavedpassword()
+        
+        public static String  GetSavedpassword()
         {
-            String dat = File.ReadAllText(path);
-            String[] strlist = dat.Split(' ');
-            return strlist[1];
+            return File.ReadAllText(path).Split(' ')[1];
         }
     }
 }
