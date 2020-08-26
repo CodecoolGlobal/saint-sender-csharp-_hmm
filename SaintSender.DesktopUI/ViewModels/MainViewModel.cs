@@ -53,6 +53,7 @@ namespace SaintSender.DesktopUI.ViewModels
         internal List<Message> GetEmails()
         {
             List<Message> resultList = new List<Message>();
+
             try
             {
                 Pop3Client client = new Pop3Client();
@@ -76,8 +77,21 @@ namespace SaintSender.DesktopUI.ViewModels
             return resultList;
         }
 
+        internal void CheckForNewEmails()
+        {
+            List<Message> refreshedList = GetEmails();
+            bool isListsAreNotEqual = !refreshedList.All(_emailsInMessage.Contains);
+            if (isListsAreNotEqual)
+            {
+                _emailsInMessage = refreshedList;
+                BuildUpEmailsToShow();
+            }
+        }
+
         public void BuildUpEmailsToShow()
         {
+            _emailsToShow = new ObservableCollection<Mail>();
+
             int idCounter = _emailsInMessage.Count();
             foreach (Message email in EmailsInMessage)
             {
