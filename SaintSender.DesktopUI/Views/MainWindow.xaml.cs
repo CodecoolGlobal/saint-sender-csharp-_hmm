@@ -11,6 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using OpenPop.Mime;
 using SaintSender.Core.Entities;
 using SaintSender.Core.Services;
@@ -25,6 +26,7 @@ namespace SaintSender.DesktopUI
     public partial class MainWindow : Window
     {
         MainViewModel _vm;
+        private DispatcherTimer dispatcher = new DispatcherTimer();
         public MainWindow()
         {
             InitializeComponent();
@@ -41,6 +43,18 @@ namespace SaintSender.DesktopUI
             else
             {
                 _vm.LoginButtonContent = "Login";
+            }
+
+            dispatcher.Interval = TimeSpan.FromSeconds(5);
+            dispatcher.Tick += PeriodicEmailChecking;
+            dispatcher.Start();
+        }
+
+        private void PeriodicEmailChecking(object sender, EventArgs e)
+        {
+            if (_vm.isSomeoneLoggedIn())
+            {
+                _vm.CheckForNewEmails();
             }
         }
 
