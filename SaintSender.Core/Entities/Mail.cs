@@ -9,9 +9,7 @@ namespace SaintSender.Core.Entities
     [Serializable]
     public class Mail :  ISerializable
     {
-
         private static string pathPart = "./data/";
-
 
         public int ID
         {

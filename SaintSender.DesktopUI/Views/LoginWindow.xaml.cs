@@ -1,26 +1,14 @@
 ﻿using SaintSender.DesktopUI.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SaintSender.DesktopUI.Views
 {
-    /// <summary>
-    /// Interaction logic for LoginWindow.xaml
-    /// </summary>
     public partial class LoginWindow : Window
     {
         MainViewModel _vm;
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -29,9 +17,15 @@ namespace SaintSender.DesktopUI.Views
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
-            
-            _vm.handleLogIn(emailInput.Text, passwordInput.Password);
-            this.Close();
+            if (_vm.HandleLogIn(emailInput.Text, passwordInput.Password)) { this.Close(); }
+            else 
+            {
+                _vm.LoginButtonContent = "Login";
+                File.WriteAllText("./data/user.txt", String.Empty);
+                MessageBox.Show("Wrong e-mail or password!");
+                emailInput.Clear();
+                passwordInput.Clear();
+            }
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
