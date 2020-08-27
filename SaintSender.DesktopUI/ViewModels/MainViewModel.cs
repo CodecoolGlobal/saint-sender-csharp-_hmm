@@ -20,6 +20,7 @@ namespace SaintSender.DesktopUI.ViewModels
         private Mail selectedEmail;
         private User loggedInUser;
         private string loginButtonContent;
+  
         
         private MainViewModel()
         {
@@ -49,7 +50,6 @@ namespace SaintSender.DesktopUI.ViewModels
             set { loginButtonContent = value; OnPropertyChanged("LoginButtonContent"); }
             get { return loginButtonContent; }
         }
-
 
         internal List<Message> GetEmails()
         {

@@ -32,7 +32,8 @@ namespace SaintSender.DesktopUI
         {
             InitializeComponent();
             _vm = MainViewModel.GetInstance();
-            this.DataContext = _vm;
+            this.DataContext = _vm;          
+            if (_vm.IsConnectedToInternet()) { connectionContent.Text = "Connected to internet"; }
             if (User.HaveAlreadyLoggedInUser())
             {
                 _vm.LoginButtonContent = "Logout";
@@ -50,10 +51,12 @@ namespace SaintSender.DesktopUI
 
         private void PeriodicEmailChecking(object sender, EventArgs e)
         {
-            if (_vm.isSomeoneLoggedIn())
+            if (_vm.isSomeoneLoggedIn() && _vm.IsConnectedToInternet())
             {
                 _vm.CheckForNewEmails();
+                connectionContent.Text = "Connected to internet";
             }
+            else if (!_vm.IsConnectedToInternet()) { connectionContent.Text = "No internet connection"; }
         }
 
         private void LoginBtn_Click(object sender, RoutedEventArgs e)
