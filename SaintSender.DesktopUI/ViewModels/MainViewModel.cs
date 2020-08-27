@@ -86,6 +86,7 @@ namespace SaintSender.DesktopUI.ViewModels
             {
                 _emailsInMessage = refreshedList;
                 BuildUpEmailsToShow();
+                SaveMails(User.GetSavedUsername());
             }
         }
 
