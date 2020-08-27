@@ -117,6 +117,7 @@ namespace SaintSender.DesktopUI.ViewModels
 
         internal void SendEmail(string emailTo, string mailSubject, string mailBody)
         {
+          
             MailMessage mail = new MailMessage(loggedInUser.UserName, emailTo);
             mail.Subject = mailSubject;
             mail.Body = mailBody;
@@ -125,8 +126,14 @@ namespace SaintSender.DesktopUI.ViewModels
             smtpServer.Port = 587;
             smtpServer.Credentials = new System.Net.NetworkCredential(loggedInUser.UserName, loggedInUser.Password);
             smtpServer.EnableSsl = true;
-
-            smtpServer.Send(mail);
+            try
+            {
+                smtpServer.Send(mail);
+            }
+            catch (SmtpFailedRecipientsException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         internal void AddToEmailsToShowList(Mail oneMail)
