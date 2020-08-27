@@ -14,14 +14,15 @@ namespace SaintSender.DesktopUI.ViewModels
     class MainViewModel : PropertyNotifier
     {
         private static MainViewModel _instance;
-
         private List<Message> _emailsInMessage;
         private ObservableCollection<Mail> _emailsToShow;
         private Mail selectedEmail;
         private User loggedInUser;
         private string loginButtonContent;
-  
-        
+        private string pathPart = "./data/";
+
+
+
         private MainViewModel()
         {
             _emailsInMessage = new List<Message>();
@@ -146,8 +147,9 @@ namespace SaintSender.DesktopUI.ViewModels
             }
         }
 
-        internal void handleLogIn(string text, string password)
+        internal bool handleLogIn(string text, string password)
         {
+            bool exist =false;
             User user = new User();
             user.UserName = text;
             user.Password = password;
@@ -158,14 +160,24 @@ namespace SaintSender.DesktopUI.ViewModels
 
             _emailsInMessage = new List<Message>();
             _emailsToShow = new ObservableCollection<Mail>();
+            String path = pathPart + text + ".txt";
             if (IsConnectedToInternet())
             {
                 _emailsInMessage = GetEmails();
-                BuildUpEmailsToShow();
-                SaveMails(text);
+                if (_emailsInMessage.Count() != 0)
+                {
+                    exist = true;
+                    BuildUpEmailsToShow();
+                    SaveMails(text);
+                }
+
             }
-            else  ReadMails(text);
-            
+            else if (File.Exists(path)) 
+            {
+                ReadMails(text);
+                exist = true;
+            }
+            return exist;
         }
 
         public void SaveMails(String email)
@@ -175,7 +187,7 @@ namespace SaintSender.DesktopUI.ViewModels
 
         public void ReadMails(String email)
         {
-            _emailsToShow =  Mail.Deserialize(email);
+            EmailsToShow =  Mail.Deserialize(email);
         }
 
         internal void handleLogout()

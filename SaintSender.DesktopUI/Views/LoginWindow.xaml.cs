@@ -29,9 +29,17 @@ namespace SaintSender.DesktopUI.Views
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
-            
-            _vm.handleLogIn(emailInput.Text, passwordInput.Password);
-            this.Close();
+            if (_vm.handleLogIn(emailInput.Text, passwordInput.Password))
+            {
+                //_vm.handleLogIn(emailInput.Text, passwordInput.Password);
+                this.Close();
+            }
+            else 
+            {
+                MessageBox.Show("Wrong e-mail or password!");
+                emailInput.Clear();
+                passwordInput.Clear();
+            }
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
