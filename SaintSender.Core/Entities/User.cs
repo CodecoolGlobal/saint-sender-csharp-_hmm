@@ -12,11 +12,6 @@ namespace SaintSender.Core.Entities
             get; set;
         }
         
-        public string EmailAdress
-        {
-            get; set;
-        }
-        
         public string Password
         {
             get; set;

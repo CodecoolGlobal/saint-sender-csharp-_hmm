@@ -62,14 +62,11 @@ namespace SaintSender.DesktopUI.ViewModels
                 client.Connect("pop.gmail.com", 995, true);
                 client.Authenticate(loggedInUser.UserName, loggedInUser.Password, AuthenticationMethod.UsernameAndPassword);
                 int messageCount = client.GetMessageCount();
-                List<Message> allEmails = new List<Message>();
 
                 for (int i = messageCount; i > 0; i--)
                 {
-                    allEmails.Add(client.GetMessage(i));
+                    resultList.Add(client.GetMessage(i));
                 }
-
-                resultList = allEmails;
             }
             catch (Exception e)
             {
@@ -147,7 +144,7 @@ namespace SaintSender.DesktopUI.ViewModels
             }
         }
 
-        internal bool handleLogIn(string text, string password)
+        internal bool HandleLogIn(string text, string password)
         {
             bool exist =false;
             User user = new User();
@@ -156,13 +153,12 @@ namespace SaintSender.DesktopUI.ViewModels
             user.SaveUser();
             loggedInUser = user;
 
-            LoginButtonContent = "Logout";
-
             _emailsInMessage = new List<Message>();
             _emailsToShow = new ObservableCollection<Mail>();
             String path = pathPart + text + ".txt";
             if (IsConnectedToInternet())
             {
+                LoginButtonContent = "Logout";
                 _emailsInMessage = GetEmails();
                 if (_emailsInMessage.Count() != 0)
                 {
@@ -170,10 +166,10 @@ namespace SaintSender.DesktopUI.ViewModels
                     BuildUpEmailsToShow();
                     SaveMails(text);
                 }
-
             }
             else if (File.Exists(path)) 
             {
+                LoginButtonContent = "Logout";
                 ReadMails(text);
                 exist = true;
             }
@@ -190,25 +186,19 @@ namespace SaintSender.DesktopUI.ViewModels
             EmailsToShow =  Mail.Deserialize(email);
         }
 
-        internal void handleLogout()
+        internal void HandleLogout()
         {
-            loggedInUser = null;
             LoginButtonContent = "Login";
+            loggedInUser = null;
             EmailsInMessage = null;
             EmailsToShow = null;
-            File.WriteAllText("./data/user.txt", "");
+            File.WriteAllText("./data/user.txt", String.Empty);
         }
 
-        internal bool isSomeoneLoggedIn()
+        internal bool IsSomeoneLoggedIn()
         {
-            if (loggedInUser != null)
-            {
-                return true;
-            } 
-            else
-            {
-                return false;
-            }
+            if (loggedInUser != null) { return true; } 
+            else { return false; }
         }
 
         public bool IsConnectedToInternet()
@@ -218,11 +208,10 @@ namespace SaintSender.DesktopUI.ViewModels
                 Ping myPing = new Ping();
                 String host = "google.com";
                 byte[] buffer = new byte[32];
-                int timeout = 1000;
+                int timeout = 500;
                 PingOptions pingOptions = new PingOptions();
                 PingReply reply = myPing.Send(host, timeout, buffer, pingOptions);
-                bool i = reply.Status == IPStatus.Success;
-                return i;
+                return reply.Status == IPStatus.Success;
             }
             catch (Exception) { }
             return false;
@@ -234,9 +223,7 @@ namespace SaintSender.DesktopUI.ViewModels
             {
                 _instance = new MainViewModel();
             }
-
             return _instance;
         }
-
     }
 }
