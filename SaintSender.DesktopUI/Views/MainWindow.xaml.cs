@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -23,6 +24,12 @@ namespace SaintSender.DesktopUI
             if (User.HaveAlreadyLoggedInUser()) { _vm.HandleLogIn(User.GetSavedUsername(), User.GetSavedpassword()); }
             else { _vm.LoginButtonContent = "Login"; }
 
+            Thread periodicThread = new Thread(PeriodicStartingThread);
+            periodicThread.Start();
+        }
+
+        private void PeriodicStartingThread()
+        {
             dispatcher.Interval = TimeSpan.FromSeconds(5);
             dispatcher.Tick += PeriodicEmailChecking;
             dispatcher.Start();

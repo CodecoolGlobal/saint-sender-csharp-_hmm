@@ -7,12 +7,12 @@
         mc:Ignorable="d"
         Title="SaintSender" Height="450" Width="800">
     <Grid>
-        <Button Name="LoginBtn" Content="{Binding LoginButtonContent}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="709,10,0,0" Click="LoginBtn_Click"/>
-        <TextBlock Name="connectionContent"  Width="200" Height="25" HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="0,10,0,0">
+        <Button Name="LoginBtn" Content="{Binding LoginButtonContent}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="25" Width="75" Margin="700,10,0,0" Click="LoginBtn_Click"/>
+        <TextBlock Name="connectionContent"  Width="167" Height="25" HorizontalAlignment="Center" FontSize="16" VerticalAlignment="Top" Margin="0,10">
            No internet connection
         </TextBlock>
         <Button Name="Compose" Content="Compose" Width="75" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top"  Click="Compose_Click" Margin="10,11,0,0"/>
-        
+
         <ListView ItemsSource="{Binding EmailsToShow}" Height="300" Width="790" Margin="0,110,-0.4,10">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
